@@ -68,8 +68,7 @@ func (dl *Layout[T]) DistributeDecimal(v decimal.Decimal, precision int32) *Valu
 
 	c := Value[T]{
 		bucketSlice: bucketSlice,
-		layout:      dl,        // we wanna store layout to prevent merging Value's with different Layout's
-		precision:   precision, // we need to store precision to be able to merge Value's with different precisions
+		layout:      dl,
 	}
 	return &c
 }

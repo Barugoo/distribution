@@ -156,7 +156,6 @@ func assertLayout[T comparable](t *testing.T, expected, actual *Layout[T]) bool 
 func assertValue[T comparable](t *testing.T, expected, actual *Value[T]) {
 	assert.Equal(t, expected.bucketSlice, expected.bucketSlice)
 	assert.Equal(t, expected.layout, actual.layout)
-	assert.Equal(t, expected.precision, actual.precision)
 }
 
 func TestDistributeDecimal(t *testing.T) {
@@ -188,7 +187,6 @@ func TestDistributeDecimal(t *testing.T) {
 					{"15", utils.ToDecimal(11), false},
 					{"30", utils.ToDecimal(1.95), true},
 				},
-				precision: 2,
 			},
 		},
 		{
@@ -218,7 +216,6 @@ func TestDistributeDecimal(t *testing.T) {
 					{"30", utils.ToDecimal(33.33), false},
 					{"45", utils.ToDecimal(33.34), true},
 				},
-				precision: 2,
 			},
 		},
 		{
@@ -248,7 +245,6 @@ func TestDistributeDecimal(t *testing.T) {
 					{"30", utils.ToDecimal(5), false},
 					{"45", utils.ToDecimal(5), true},
 				},
-				precision: 2,
 			},
 		},
 		{
@@ -271,7 +267,6 @@ func TestDistributeDecimal(t *testing.T) {
 					{"15", utils.ToDecimal(0.50), false},
 					{"30", utils.ToDecimal(0.00), true},
 				},
-				precision: 2,
 			},
 		},
 		{
@@ -294,7 +289,6 @@ func TestDistributeDecimal(t *testing.T) {
 					{"15", utils.ToDecimal(162.5), false},
 					{"30", utils.ToDecimal(162.51), true},
 				},
-				precision: 2,
 			},
 		},
 	}

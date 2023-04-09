@@ -6,7 +6,6 @@ import (
 
 // Value is a result of Distribute operations; immutable
 type Value[T comparable] struct {
-	precision   int32
 	bucketSlice BucketSlice[T]
 	layout      *Layout[T]
 }
