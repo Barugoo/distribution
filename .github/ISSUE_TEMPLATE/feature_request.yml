@@ -1,0 +1,23 @@
+name: Feature request
+description: Предложить улучшение
+labels: ["enhancement", "needs-spec"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Проблема/боль
+      description: Что хотите решить?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предложение
+      description: Как это должно работать? (API-скиз)
+      render: go
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Совместимость
+      options:
+        - label: Изменение не ломает существующий API

@@ -126,7 +126,6 @@ func TestMakeLayout(t *testing.T) {
 
 		assertLayout(t, tc.expectedLayout, res)
 	}
-
 }
 
 func assertDecimal(t *testing.T, expected, actual decimal.Decimal) bool {
@@ -299,5 +298,4 @@ func TestDistributeDecimal(t *testing.T) {
 		res := tc.layout.DistributeDecimal(tc.input, 2)
 		assertValue(t, tc.expectedValue, res)
 	}
-
 }

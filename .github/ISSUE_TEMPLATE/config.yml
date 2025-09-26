@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Вопросы по использованию / Q&A
+    url: https://github.com/{{MODULE_PATH}}/discussions
+    about: Задавайте вопросы здесь, если это не баг и не фича.
