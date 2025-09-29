@@ -5,8 +5,6 @@ import (
 
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"
-
-	"github.com/barugoo/distribution/utils"
 )
 
 func fromStr(str string) decimal.Decimal {
@@ -126,7 +124,6 @@ func TestMakeLayout(t *testing.T) {
 
 		assertLayout(t, tc.expectedLayout, res)
 	}
-
 }
 
 func assertDecimal(t *testing.T, expected, actual decimal.Decimal) bool {
@@ -167,7 +164,7 @@ func TestDistributeDecimal(t *testing.T) {
 	}{
 		{
 			name:  "simple",
-			input: utils.ToDecimal(12.95),
+			input: toDecimal(12.95),
 			layout: newLayout([]fraction[string]{
 				{
 					key:         "15",
@@ -184,14 +181,14 @@ func TestDistributeDecimal(t *testing.T) {
 			),
 			expectedValue: &Value[string]{
 				bucketSlice: BucketSlice[string]{
-					{"15", utils.ToDecimal(11), false},
-					{"30", utils.ToDecimal(1.95), true},
+					{"15", toDecimal(11), false},
+					{"30", toDecimal(1.95), true},
 				},
 			},
 		},
 		{
 			name:  "divisor is dividable by 3 and dividend is not",
-			input: utils.ToDecimal(10),
+			input: toDecimal(10),
 			layout: newLayout([]fraction[string]{
 				{
 					key:         "15",
@@ -212,15 +209,15 @@ func TestDistributeDecimal(t *testing.T) {
 			}),
 			expectedValue: &Value[string]{
 				bucketSlice: BucketSlice[string]{
-					{"15", utils.ToDecimal(33.33), false},
-					{"30", utils.ToDecimal(33.33), false},
-					{"45", utils.ToDecimal(33.34), true},
+					{"15", toDecimal(33.33), false},
+					{"30", toDecimal(33.33), false},
+					{"45", toDecimal(33.34), true},
 				},
 			},
 		},
 		{
 			name:  "divisor and dividend are dividable by 3",
-			input: utils.ToDecimal(15),
+			input: toDecimal(15),
 			layout: newLayout([]fraction[string]{
 				{
 					key:         "15",
@@ -241,15 +238,15 @@ func TestDistributeDecimal(t *testing.T) {
 			}),
 			expectedValue: &Value[string]{
 				bucketSlice: BucketSlice[string]{
-					{"15", utils.ToDecimal(5), false},
-					{"30", utils.ToDecimal(5), false},
-					{"45", utils.ToDecimal(5), true},
+					{"15", toDecimal(5), false},
+					{"30", toDecimal(5), false},
+					{"45", toDecimal(5), true},
 				},
 			},
 		},
 		{
 			name:  "round bank case",
-			input: utils.ToDecimal(0.5),
+			input: toDecimal(0.5),
 			layout: newLayout([]fraction[string]{
 				{
 					key:         "15",
@@ -264,14 +261,14 @@ func TestDistributeDecimal(t *testing.T) {
 			}),
 			expectedValue: &Value[string]{
 				bucketSlice: BucketSlice[string]{
-					{"15", utils.ToDecimal(0.50), false},
-					{"30", utils.ToDecimal(0.00), true},
+					{"15", toDecimal(0.50), false},
+					{"30", toDecimal(0.00), true},
 				},
 			},
 		},
 		{
 			name:  "division by 2 with remainder",
-			input: utils.ToDecimal(325.01),
+			input: toDecimal(325.01),
 			layout: newLayout([]fraction[string]{
 				{
 					key:         "15",
@@ -286,8 +283,8 @@ func TestDistributeDecimal(t *testing.T) {
 			}),
 			expectedValue: &Value[string]{
 				bucketSlice: BucketSlice[string]{
-					{"15", utils.ToDecimal(162.5), false},
-					{"30", utils.ToDecimal(162.51), true},
+					{"15", toDecimal(162.5), false},
+					{"30", toDecimal(162.51), true},
 				},
 			},
 		},
@@ -299,5 +296,4 @@ func TestDistributeDecimal(t *testing.T) {
 		res := tc.layout.DistributeDecimal(tc.input, 2)
 		assertValue(t, tc.expectedValue, res)
 	}
-
 }

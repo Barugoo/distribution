@@ -5,8 +5,6 @@ import (
 
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"
-
-	"github.com/barugoo/distribution/utils"
 )
 
 func TestValueToSlice(t *testing.T) {
@@ -26,14 +24,14 @@ func TestValueToSlice(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 				},
 			},
 			expected: BucketSlice[string]{
 				{
 					Key:   "10",
-					Value: utils.ToDecimal(10),
+					Value: toDecimal(10),
 				},
 			},
 		},
@@ -55,7 +53,7 @@ func TestValueTotal(t *testing.T) {
 		{
 			name:     "empty",
 			value:    &Value[string]{},
-			expected: utils.ToDecimal(0),
+			expected: toDecimal(0),
 		},
 		{
 			name: "single",
@@ -63,11 +61,11 @@ func TestValueTotal(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 				},
 			},
-			expected: utils.ToDecimal(10),
+			expected: toDecimal(10),
 		},
 		{
 			name: "multiple",
@@ -75,15 +73,15 @@ func TestValueTotal(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 					{
 						Key:   "20",
-						Value: utils.ToDecimal(20),
+						Value: toDecimal(20),
 					},
 				},
 			},
-			expected: utils.ToDecimal(30),
+			expected: toDecimal(30),
 		},
 	}
 
@@ -110,7 +108,7 @@ func TestValueGet(t *testing.T) {
 				},
 			},
 			key:           "10",
-			expected:      utils.ToDecimal(0),
+			expected:      toDecimal(0),
 			expectedNotOK: true,
 		},
 		{
@@ -124,12 +122,12 @@ func TestValueGet(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 				},
 			},
 			key:      "10",
-			expected: utils.ToDecimal(10),
+			expected: toDecimal(10),
 		},
 		{
 			name: "multiple",
@@ -143,16 +141,16 @@ func TestValueGet(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 					{
 						Key:   "20",
-						Value: utils.ToDecimal(20),
+						Value: toDecimal(20),
 					},
 				},
 			},
 			key:      "20",
-			expected: utils.ToDecimal(20),
+			expected: toDecimal(20),
 		},
 		{
 			name: "idx out of range",
@@ -167,16 +165,16 @@ func TestValueGet(t *testing.T) {
 				bucketSlice: BucketSlice[string]{
 					{
 						Key:   "10",
-						Value: utils.ToDecimal(10),
+						Value: toDecimal(10),
 					},
 					{
 						Key:   "20",
-						Value: utils.ToDecimal(20),
+						Value: toDecimal(20),
 					},
 				},
 			},
 			key:           "whatisthis",
-			expected:      utils.ToDecimal(0),
+			expected:      toDecimal(0),
 			expectedNotOK: true,
 		},
 	}
