@@ -6,16 +6,13 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
+  build-test-lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['1.23']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: '1.23'
           cache: true
       - name: Go mod tidy (no diff)
         run: go mod tidy && git diff --exit-code
