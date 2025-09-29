@@ -10,9 +10,6 @@ fmt:
 vet:
 	$(GO) vet $(PKG)
 
-lint:
-	golangci-lint run
-
 test:
 	$(GO) test $(PKG) -race -coverprofile=coverage.out -covermode=atomic
 
