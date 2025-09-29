@@ -5,11 +5,13 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: release-drafter/release-drafter@v6
         with:
