@@ -1,3 +1,4 @@
+// Example of how to use the distribution core package
 package main
 
 import (
@@ -6,21 +7,20 @@ import (
 	"github.com/shopspring/decimal"
 
 	"github.com/barugoo/distribution/examples/products"
-	"github.com/barugoo/distribution/utils"
 )
 
 func main() {
 	ps := []products.Product{
 		{
-			Price:   utils.ToDecimal(10),
+			Price:   decimal.NewFromFloat(10),
 			VatRate: 5,
 		},
 		{
-			Price:   utils.ToDecimal(15),
+			Price:   decimal.NewFromFloat(15),
 			VatRate: 5,
 		},
 		{
-			Price:   utils.ToDecimal(25),
+			Price:   decimal.NewFromFloat(25),
 			VatRate: 7,
 		},
 	}

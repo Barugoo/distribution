@@ -7,12 +7,14 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Bucket represents a single bucket in a distribution; immutable
 type Bucket[T comparable] struct {
 	Key                T
 	Value              decimal.Decimal
 	ShouldAddRemainder bool
 }
 
+// BucketSlice is a slice of Buckets; immutable
 type BucketSlice[T comparable] []Bucket[T]
 
 func (s BucketSlice[T]) copy() BucketSlice[T] {
@@ -21,6 +23,7 @@ func (s BucketSlice[T]) copy() BucketSlice[T] {
 	return cloned
 }
 
+// Total returns the total value of all buckets in the slice
 func (s BucketSlice[T]) Total() (sum decimal.Decimal) {
 	for _, v := range s {
 		sum = sum.Add(v.Value)
@@ -28,6 +31,7 @@ func (s BucketSlice[T]) Total() (sum decimal.Decimal) {
 	return sum
 }
 
+// String returns a string representation of the BucketSlice
 func (s BucketSlice[T]) String() string {
 	var str strings.Builder
 	str.WriteString("[")

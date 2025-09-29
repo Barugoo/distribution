@@ -1,3 +1,4 @@
+// Package core provides the core functionality for the distribution library
 package core
 
 import (
@@ -7,8 +8,10 @@ import (
 )
 
 var (
+	// ErrBucketsTotalValueIsZero is returned when the total value of all buckets is zero
 	ErrBucketsTotalValueIsZero = errors.New("buckets total value is zero")
-	ErrDuplicateBucketKey      = errors.New("duplicate bucket key")
+	// ErrDuplicateBucketKey is returned when there are duplicate bucket keys in the input slice
+	ErrDuplicateBucketKey = errors.New("duplicate bucket key")
 )
 
 // Layout serves as a distribution reference. Sum of all numerators divided by denominator is always equal to 1. Is immutable
@@ -105,6 +108,7 @@ func MakeLayout[T comparable](buckets BucketSlice[T]) (*Layout[T], error) {
 	return &l, nil
 }
 
+// Keys returns all bucket keys in the layout
 func (dl *Layout[T]) Keys() []T {
 	keys := make([]T, 0, len(dl.fractions))
 	for _, f := range dl.fractions {
